@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "lib": [
+      "es7"
+    ],
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2017",
+    "removeComments": true,
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "outDir": "./build",
+    "baseUrl": "./src",
+    "strict": true,
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+  ]
+}
