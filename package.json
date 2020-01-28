@@ -11,14 +11,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/request": "^2.48.4",
-    "@types/request-promise": "^4.1.45",
     "async": "^3.1.1",
     "nodemon": "^2.0.2",
     "request": "^2.88.0",
     "request-promise": "^4.2.5"
   },
   "devDependencies": {
+    "@types/request": "^2.48.4",
+    "@types/request-promise": "^4.1.45",
     "prettier": "^1.19.1",
     "typescript": "^3.7.5"
   }
