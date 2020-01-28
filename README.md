@@ -1,10 +1,18 @@
-# amazon-keyword-suggestion
 
+# Amazon Keyword Suggestion Tool
 
 ## Install
+```javascript
 npm i
+```
 
-## Example
-node build KEYWORD
-node build "iphone case"
-node build "dildo"
+## Usage
+```javascript
+node build/index KEYWORD
+```
+```javascript
+node build/index "iphone case"
+```
+```javascript
+node build/index "dildo case"
+```
