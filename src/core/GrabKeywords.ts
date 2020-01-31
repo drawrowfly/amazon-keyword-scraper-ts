@@ -15,7 +15,6 @@ export class GrabKeywords extends EventEmitter {
         });
         this.on('completed', () => {
             this._keywordList = [...new Set(this._keywordList)];
-            console.log(this._keywordList);
         });
     }
 
