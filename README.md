@@ -1,5 +1,5 @@
-# Amazon Keyword Suggestion Tool
-From 1 keyword you can get up to hundred or even thousands **Unique and Relevant Keywords** with a **Number of Active Products** per each keyword.
+# Amazon Keyword Scraper
+From 1 keyword you can scrape up to hundreds and even thousands **Unique and Relevant Keywords** with a **Number of Active Products** per each keyword.
 
 ## Features
 *   Scrape Keywords with the number of active products from Amazon Store
@@ -19,6 +19,7 @@ let amazon = new GrabKeywords(options)._initScraper();
 amazon.on('keywords', key => {
     console.log(key);
 });
+
 ```
 **Options**
 ```javascipt
