@@ -2,7 +2,10 @@
   "name": "amazon-keyword-research",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc && prettier --config ./.prettierrc.js --write './build/**/*.js'",
     "start": "nodemon src/index.ts"
@@ -13,11 +16,14 @@
   "dependencies": {
     "assemblyscript": "^0.9.1",
     "async": "^3.1.1",
+    "bluebird": "^3.7.2",
+    "json2csv": "^4.5.4",
     "nodemon": "^2.0.2",
     "request": "^2.88.0",
     "request-promise": "^4.2.5"
   },
   "devDependencies": {
+    "@types/async": "^3.0.7",
     "@types/request": "^2.48.4",
     "@types/request-promise": "^4.1.45",
     "prettier": "^1.19.1",
