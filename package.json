@@ -2,31 +2,51 @@
   "name": "amazon-keyword-research",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "./lib/main.js",
+  "types": "./lib/main.d.ts",
   "files": [
-    "dist"
+    "lib"
   ],
   "scripts": {
-    "build": "tsc && prettier --config ./.prettierrc.js --write './build/**/*.js'",
-    "start": "nodemon src/index.ts"
+    "build": "tsc && prettier --config ./.prettierrc.js --write './lib/**/*.js'",
+    "start": "nodemon test.ts",
+    "test": "jest --coverage --verbose"
+  },
+  "jest": {
+    "verbose": true,
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "assemblyscript": "^0.9.1",
     "async": "^3.1.1",
     "bluebird": "^3.7.2",
     "json2csv": "^4.5.4",
-    "nodemon": "^2.0.2",
     "request": "^2.88.0",
     "request-promise": "^4.2.5"
   },
   "devDependencies": {
     "@types/async": "^3.0.7",
+    "@types/jest": "^25.1.2",
     "@types/request": "^2.48.4",
     "@types/request-promise": "^4.1.45",
+    "@types/supertest": "^2.0.8",
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
+    "ts-jest": "^25.2.0",
     "typescript": "^3.7.5"
   }
 }

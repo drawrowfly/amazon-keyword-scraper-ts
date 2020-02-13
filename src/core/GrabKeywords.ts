@@ -16,6 +16,7 @@ export class GrabKeywords extends EventEmitter {
     public _filePath: string;
     public _save: boolean;
     public _event: boolean;
+    public _proxy!: string;
 
     private _keyWordSet: Keywords;
     private _keywordCollectorQueue: AsyncQueue<any>;
@@ -33,10 +34,13 @@ export class GrabKeywords extends EventEmitter {
         timeOutTask = 10,
         filePath = process.cwd(),
         save = false,
-        event = false,
+        event = true,
+        proxy = '',
     }) {
         super();
         this._event = event;
+
+        this._proxy = proxy;
 
         this._keyword = keyword; // entry keyword
         this._limit = limit; // number of keywords to collect
@@ -144,6 +148,7 @@ export class GrabKeywords extends EventEmitter {
                         Accept:
                             'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
                     },
+                    ...(this._proxy ? { proxy: `http://${this._proxy}/` } : {}),
                     gzip: true,
                     json: true,
                 });
@@ -165,7 +170,7 @@ export class GrabKeywords extends EventEmitter {
         });
     }
 
-    public _getKeywordSuggestions(keyword: string): Promise<any> {
+    public _getKeywordSuggestions(keyword: string): any {
         return new Promise(async (resolve, reject) => {
             try {
                 let body = await rp({

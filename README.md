@@ -16,7 +16,6 @@ import { GrabKeywords } from './src';
 const options = {
     keyword: "iphone",
     limit: 100,
-    event: true,
 };
 let amazon = new GrabKeywords(options)._initScraper();
 
@@ -33,9 +32,6 @@ let options = {
     
     // Number of keywords to collect: {int default: 50}
     limit: 50,
-
-    // Enable or Disable event emitter. If true then you can accept data through events: {boolean default: false}
-    event: false,
     
     // Save result to a CSV file: {boolean default: false}
     save: false,
@@ -54,7 +50,6 @@ let options = {
 
 ***
 <a href="https://www.buymeacoffee.com/Usom2qC" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-blue.png" alt="Buy Me A Coffee" style="height: 55px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
-***
 
 ----
 License
