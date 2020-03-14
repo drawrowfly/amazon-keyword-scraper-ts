@@ -1,6 +1,6 @@
 {
   "name": "amazon-keyword-research",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "./lib/main.js",
   "types": "./lib/main.d.ts",
