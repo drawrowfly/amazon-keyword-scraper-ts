@@ -19,6 +19,7 @@ export class GrabKeywords extends EventEmitter {
     public _proxy!: string;
 
     private _keyWordSet: Keywords;
+    private _keyWordArray: Key[] = [];
     private _keywordCollectorQueue: AsyncQueue<any>;
     private _keywordMetaCollectorQueue: AsyncQueue<any>;
     private _errorCount: number;
@@ -110,6 +111,7 @@ export class GrabKeywords extends EventEmitter {
         }, 5);
 
         this._keywordMetaCollectorQueue.drain(() => {
+            this.emit('completed', this._keyWordArray);
             this._finalizeTask();
         });
     }
@@ -165,6 +167,7 @@ export class GrabKeywords extends EventEmitter {
 
             // If this._event then emit an user event with the keyword
             if (this._event) {
+                this._keyWordArray.push(item);
                 this.emit('keywords', item);
             }
         });
