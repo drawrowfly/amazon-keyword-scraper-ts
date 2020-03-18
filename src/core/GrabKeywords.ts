@@ -119,7 +119,6 @@ export class GrabKeywords extends EventEmitter {
     public _initScraper() {
         if (this._keyword) {
             this._getKeywordSuggestions(this._keyword);
-            return this;
         } else {
             throw new Error('Keyword is missing');
         }
@@ -173,51 +172,51 @@ export class GrabKeywords extends EventEmitter {
         });
     }
 
-    public _getKeywordSuggestions(keyword: string): any {
-        return new Promise(async (resolve, reject) => {
-            try {
-                let body = await rp({
-                    method: 'GET',
-                    uri: 'https://completion.amazon.com/api/2017/suggestions',
-                    qs: {
-                        'page-type': 'Gateway',
-                        lop: 'en_US',
-                        'site-variant': 'desktop',
-                        'client-info': 'amazon-search-ui',
-                        mid: 'ATVPDKIKX0DER',
-                        alias: 'aps',
-                        b2b: '0',
-                        fresh: '1',
-                        ks: '80',
-                        prefix: keyword,
-                        event: 'onKeyPress',
-                        limit: '11',
-                        fb: '1',
-                        'suggestion-type': 'KEYWORD',
-                        _: Date.now(),
-                    },
-                    headers: {
-                        'User-Agent': `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_${Math.floor(
-                            Math.random() * (15 - 10) + 10,
-                        )}_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${Math.floor(
-                            Math.random() * (79 - 70) + 70,
-                        )}.0.3945.117 Safari/537.36`,
-                        Origin: 'https://www.amazon.com',
-                        Referer: 'https://www.amazon.com/',
-                        'Accept-Encoding': 'gzip, deflate, br',
-                        'Accept-Language': 'en-US,en;q":"0.9,ru;q":"0.8',
-                        Accept: 'application/json, text/javascript, */*; q":"0.01',
-                    },
-                    gzip: true,
-                    json: true,
-                });
+    public async _getKeywordSuggestions(keyword: string): Promise<any> {
+        try {
+            let body = await rp({
+                method: 'GET',
+                uri: 'https://completion.amazon.com/api/2017/suggestions',
+                qs: {
+                    'page-type': 'Gateway',
+                    lop: 'en_US',
+                    'site-variant': 'desktop',
+                    'client-info': 'amazon-search-ui',
+                    mid: 'ATVPDKIKX0DER',
+                    alias: 'aps',
+                    b2b: '0',
+                    fresh: '1',
+                    ks: '80',
+                    prefix: keyword,
+                    event: 'onKeyPress',
+                    limit: '11',
+                    fb: '1',
+                    'suggestion-type': 'KEYWORD',
+                    _: Date.now(),
+                },
+                headers: {
+                    'User-Agent': `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_${Math.floor(
+                        Math.random() * (15 - 10) + 10,
+                    )}_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${Math.floor(
+                        Math.random() * (79 - 70) + 70,
+                    )}.0.3945.117 Safari/537.36`,
+                    Origin: 'https://www.amazon.com',
+                    Referer: 'https://www.amazon.com/',
+                    'Accept-Encoding': 'gzip, deflate, br',
+                    'Accept-Language': 'en-US,en;q":"0.9,ru;q":"0.8',
+                    Accept: 'application/json, text/javascript, */*; q":"0.01',
+                },
+                gzip: true,
+                json: true,
+            });
 
-                this._processResponse(body);
-                resolve();
-            } catch (error) {
-                reject(error);
+            if (body.suggestions.length) {
+                return this._processResponse(body);
             }
-        });
+            this.emit('completed', this._keyWordArray);
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
     private _processResponse(body: any) {
